@@ -18,6 +18,7 @@
 body {
   margin: 0;
   height: 100vh;
+  min-height: 100svh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,7 +51,7 @@ body {
 }
 
 #envelope {
-  width: 200px;
+  width: clamp(140px, 28vw, 200px);
   animation: pulse 1.6s ease-in-out infinite;
   cursor: pointer;
   filter: drop-shadow(0 12px 24px var(--shadow));
@@ -58,7 +59,7 @@ body {
 
 .envelope-text {
   font-family: "Fredoka", sans-serif;
-  font-size: 28px;
+  font-size: clamp(18px, 4.6vw, 28px);
   margin: 0;
   color: #ff6fae;
   text-shadow: 0 6px 18px rgba(255, 111, 174, 0.3);
@@ -66,7 +67,7 @@ body {
 
 .envelope-sub {
   margin: 0;
-  font-size: 16px;
+  font-size: clamp(11px, 3vw, 16px);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #a95580;
@@ -177,7 +178,7 @@ p {
 
 /* Cat */
 .cat {
-  width: 210px;
+  width: clamp(130px, 28vw, 210px);
   margin: 6px 0 6px;
   transition: width 0.4s ease;
   filter: drop-shadow(0 10px 20px rgba(255, 111, 174, 0.2));
@@ -195,7 +196,7 @@ p {
   gap: 16px;
   position: relative;
   margin-top: 2px;
-  min-height: 170px;
+  min-height: 150px;
   padding: 0 16px;
   width: min(520px, 92%);
   margin-left: auto;
@@ -236,7 +237,7 @@ p {
 }
 
 .btn {
-  width: 115px;
+  width: clamp(84px, 22vw, 115px);
   cursor: pointer;
   user-select: none;
   transition: transform 0.2s ease;
@@ -296,5 +297,52 @@ p {
 
   .btn {
     width: 100px;
+  }
+}
+
+@media (max-width: 520px) {
+  body {
+    padding: 14px;
+  }
+
+  .letter-window {
+    width: 94vw;
+    aspect-ratio: auto;
+    padding: 86px 16px 14px;
+    min-height: 420px;
+    background-size: 100% 100%;
+  }
+
+  h1 {
+    font-size: clamp(18px, 5vw, 24px);
+    max-width: 88%;
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+  .cat {
+    width: clamp(120px, 36vw, 170px);
+  }
+
+  .buttons {
+    width: 100%;
+    min-height: 130px;
+  }
+
+  .final-text {
+    font-size: 16px;
+  }
+}
+
+@media (max-height: 700px) {
+  .letter-window {
+    padding-top: 90px;
+    min-height: 380px;
+  }
+
+  .cat {
+    width: clamp(110px, 24vh, 170px);
   }
 }

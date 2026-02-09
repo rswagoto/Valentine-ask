@@ -5,6 +5,8 @@ const noBtn = document.querySelector(".no-btn");
 const noWrapper = document.querySelector(".no-wrapper");
 const buttonArea = document.getElementById("letter-buttons");
 const yesBtn = document.querySelector(".btn[alt='Yes']");
+const bgAudio = document.getElementById("bg-audio");
+let audioStarted = false;
 
 const title = document.getElementById("letter-title");
 const catImg = document.getElementById("letter-cat");
@@ -18,12 +20,28 @@ const loveRain = document.getElementById("love-rain");
 envelope.addEventListener("click", () => {
     envelope.style.display = "none";
     letter.style.display = "flex";
+    playAudioFromStart();
 
     setTimeout( () => {
         document.querySelector(".letter-window").classList.add("open");
         positionNoAfterAssets();
     },50);
 });
+
+const playAudioFromStart = () => {
+    if (!bgAudio) return;
+    if (audioStarted) return;
+    try {
+        bgAudio.currentTime = 0;
+    } catch (err) {
+        // Some browsers may throw if not yet seekable; ignore.
+    }
+    const playPromise = bgAudio.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {});
+    }
+    audioStarted = true;
+};
 
 // Logic to move the NO btn
 
